@@ -8,7 +8,9 @@ export default function PublikLayout() {
     <div className="app-shell">
       <header className="app-header">
         <div className="app-header__brand">
-          <div className="brand-mark" aria-hidden="true">SBH</div>
+          <div className="brand-mark" aria-hidden="true">
+            <img src="/favicon.svg" alt="Logo" style={{ width: 26, height: 26, display: 'block', objectFit: 'contain' }} />
+          </div>
           <div>
             <h1 className="app-header__title">Kas Paguyuban</h1>
             <p className="app-header__sub">

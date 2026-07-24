@@ -49,7 +49,9 @@ export default function AdminLayout() {
           </svg>
         </button>
         <div className="admin-mobile-bar__brand">
-          <div className="brand-mark brand-mark--sm" aria-hidden="true">SBH</div>
+          <div className="brand-mark brand-mark--sm" aria-hidden="true">
+            <img src="/favicon.svg" alt="Logo" style={{ width: 22, height: 22, display: 'block', objectFit: 'contain' }} />
+          </div>
           <div>
             <strong className="admin-mobile-bar__title">Kas Admin</strong>
             <span className="admin-mobile-bar__sub">{user?.nama || 'Admin'}</span>

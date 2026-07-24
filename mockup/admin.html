@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin — Kas Paguyuban SAID BIN HARITS</title>
+    <link rel="stylesheet" href="assets/theme.css" />
+  </head>
+  <body>
+    <div class="mock-banner">
+      Mockup admin ·
+      <a href="publik.html" style="color: inherit; text-decoration: underline">← Halaman publik</a>
+    </div>
+
+    <!-- Mobile top bar -->
+    <header class="admin-mobile-bar">
+      <button
+        type="button"
+        class="admin-menu-btn"
+        id="admin-menu-open"
+        aria-label="Buka menu navigasi"
+        aria-controls="admin-drawer"
+        aria-expanded="false"
+      >
+        <!-- hamburger -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+      <div class="admin-mobile-bar__brand">
+        <div class="brand-mark brand-mark--sm" aria-hidden="true">SBH</div>
+        <div>
+          <strong class="admin-mobile-bar__title">Kas Admin</strong>
+          <span class="admin-mobile-bar__sub" id="admin-mobile-section">Dashboard</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Drawer overlay + panel -->
+    <div class="admin-drawer-overlay" id="admin-drawer-overlay" hidden></div>
+    <aside
+      class="admin-drawer"
+      id="admin-drawer"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menu admin"
+      hidden
+    >
+      <div class="admin-drawer__head">
+        <div>
+          <h2 class="admin-drawer__title">Menu Admin</h2>
+          <p class="admin-drawer__sub">SAID BIN HARITS · TA 2025/2026</p>
+        </div>
+        <button type="button" class="admin-menu-btn" id="admin-menu-close" aria-label="Tutup menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+      </div>
+      <nav class="admin-drawer__nav" aria-label="Navigasi admin mobile">
+        <a class="nav-link is-active" href="#dashboard" data-admin-nav="dashboard">Dashboard</a>
+        <a class="nav-link" href="#wali" data-admin-nav="wali">Wali Murid</a>
+        <a class="nav-link" href="#bayar" data-admin-nav="bayar">Bayar Iuran</a>
+        <a class="nav-link" href="#pemasukan" data-admin-nav="pemasukan">Pemasukan Lain</a>
+        <a class="nav-link" href="#pengeluaran" data-admin-nav="pengeluaran">Pengeluaran</a>
+        <a class="nav-link" href="#laporan" data-admin-nav="laporan">Laporan & Export</a>
+        <a class="nav-link" href="#pengaturan" data-admin-nav="pengaturan">Pengaturan</a>
+      </nav>
+      <div class="admin-drawer__foot">
+        <a class="btn btn--secondary btn--block" href="publik.html">Lihat halaman publik</a>
+        <a class="btn btn--ghost btn--block" href="admin-login.html">Keluar</a>
+      </div>
+    </aside>
+
+    <div class="admin-layout">
+      <aside class="sidebar">
+        <div class="sidebar__brand">
+          <h1>Kas Admin</h1>
+          <p>SAID BIN HARITS</p>
+        </div>
+        <nav class="sidebar__nav" aria-label="Menu admin desktop">
+          <a class="nav-link is-active" href="#dashboard" data-admin-nav="dashboard">Dashboard</a>
+          <a class="nav-link" href="#wali" data-admin-nav="wali">Wali Murid</a>
+          <a class="nav-link" href="#bayar" data-admin-nav="bayar">Bayar Iuran</a>
+          <a class="nav-link" href="#pemasukan" data-admin-nav="pemasukan">Pemasukan Lain</a>
+          <a class="nav-link" href="#pengeluaran" data-admin-nav="pengeluaran">Pengeluaran</a>
+          <a class="nav-link" href="#laporan" data-admin-nav="laporan">Laporan & Export</a>
+          <a class="nav-link" href="#pengaturan" data-admin-nav="pengaturan">Pengaturan</a>
+        </nav>
+        <div class="sidebar__foot">
+          <a class="btn btn--secondary btn--block btn--sm" href="publik.html">Halaman publik</a>
+          <a class="btn btn--ghost btn--block btn--sm" href="admin-login.html">Keluar</a>
+        </div>
+      </aside>
+
+      <div class="admin-main">
+        <!-- DASHBOARD -->
+        <section id="admin-dashboard" class="stack-lg">
+          <div class="admin-top">
+            <div>
+              <h1 class="page-title">Dashboard</h1>
+              <p class="page-desc" style="margin-bottom: 0">Ringkasan kas & pintasan bendahara.</p>
+            </div>
+            <div class="quick-actions">
+              <button type="button" class="btn btn--primary btn--sm" data-admin-go="bayar">+ Bayar iuran</button>
+              <button type="button" class="btn btn--secondary btn--sm" data-admin-go="pengeluaran">+ Pengeluaran</button>
+              <button type="button" class="btn btn--secondary btn--sm" data-admin-go="pemasukan">+ Pemasukan lain</button>
+            </div>
+          </div>
+
+          <div class="card card--saldo">
+            <p class="card-label">Saldo kas</p>
+            <p class="saldo-amount">Rp 1.240.000</p>
+            <div class="meta-line">
+              <span class="in">+ Rp 1.600.000 total masuk</span>
+              <span class="out">− Rp 360.000 total keluar</span>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card stat-card">
+              <p class="card-label">Iuran Juli</p>
+              <p class="stat-value">18 / 22</p>
+              <p class="stat-hint">wali murid sudah lunas</p>
+            </div>
+            <div class="card stat-card">
+              <p class="card-label">Belum bayar</p>
+              <p class="stat-value" style="color: var(--color-warning)">4</p>
+              <p class="stat-hint">termasuk sebagian</p>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="section-label">Perlu perhatian</h2>
+            <div class="list">
+              <div class="list-item">
+                <div class="list-item__main">
+                  <p class="list-item__title">Bapak Dimas Pratama</p>
+                  <p class="list-item__sub">Belum bayar Juli</p>
+                </div>
+                <span class="badge badge--belum">Belum</span>
+              </div>
+              <div class="list-item">
+                <div class="list-item__main">
+                  <p class="list-item__title">Bapak Fajar Nugroho</p>
+                  <p class="list-item__sub">Belum bayar Juli</p>
+                </div>
+                <span class="badge badge--belum">Belum</span>
+              </div>
+              <div class="list-item">
+                <div class="list-item__main">
+                  <p class="list-item__title">Bapak Budi Santoso</p>
+                  <p class="list-item__sub">Kurang Rp 10.000</p>
+                </div>
+                <span class="badge badge--sebagian">Sebagian</span>
+              </div>
+              <div class="list-item">
+                <div class="list-item__main">
+                  <p class="list-item__title">Ibu Gita Maharani</p>
+                  <p class="list-item__sub">Kurang Rp 15.000</p>
+                </div>
+                <span class="badge badge--sebagian">Sebagian</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- WALI MURID -->
+        <section id="admin-wali" class="stack-lg hidden">
+          <div class="admin-top">
+            <div>
+              <h1 class="page-title">Data Wali Murid</h1>
+              <p class="page-desc" style="margin-bottom: 0">Kelola daftar wali murid paguyuban SAID BIN HARITS.</p>
+            </div>
+            <button type="button" class="btn btn--primary btn--sm">+ Tambah wali murid</button>
+          </div>
+
+          <div class="field">
+            <input class="input input--search" type="search" placeholder="Cari nama wali murid…" />
+          </div>
+
+          <div class="table-wrap">
+            <table class="data">
+              <thead>
+                <tr>
+                  <th>Nama wali murid</th>
+                  <th>No. HP</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Ibu Ahmad Fauzi</td>
+                  <td>0812-3456-7890</td>
+                  <td><span class="badge badge--lunas">Aktif</span></td>
+                  <td><button class="btn btn--ghost btn--sm" type="button">Edit</button></td>
+                </tr>
+                <tr>
+                  <td>Bapak Budi Santoso</td>
+                  <td>0821-9876-5432</td>
+                  <td><span class="badge badge--lunas">Aktif</span></td>
+                  <td><button class="btn btn--ghost btn--sm" type="button">Edit</button></td>
+                </tr>
+                <tr>
+                  <td>Ibu Citra Ayu</td>
+                  <td>0857-1122-3344</td>
+                  <td><span class="badge badge--lunas">Aktif</span></td>
+                  <td><button class="btn btn--ghost btn--sm" type="button">Edit</button></td>
+                </tr>
+                <tr>
+                  <td>Bapak Dimas Pratama</td>
+                  <td>0813-5566-7788</td>
+                  <td><span class="badge badge--lunas">Aktif</span></td>
+                  <td><button class="btn btn--ghost btn--sm" type="button">Edit</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card stack">
+            <h2 style="margin: 0; font-size: 15px">Form tambah / edit (preview)</h2>
+            <div class="grid-2">
+              <div class="field">
+                <label>Nama lengkap wali murid</label>
+                <input class="input" placeholder="Nama wali murid" />
+              </div>
+              <div class="field">
+                <label>Nama panggilan</label>
+                <input class="input" placeholder="Opsional" />
+              </div>
+            </div>
+            <div class="field">
+              <label>No. HP</label>
+              <input class="input" placeholder="Nomor HP wali murid" />
+            </div>
+            <div class="field">
+              <label>Catatan</label>
+              <textarea class="textarea" placeholder="Catatan internal admin"></textarea>
+            </div>
+            <div class="row" style="justify-content: flex-end">
+              <button class="btn btn--secondary" type="button">Batal</button>
+              <button class="btn btn--primary" type="button">Simpan wali murid</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- BAYAR IURAN -->
+        <section id="admin-bayar" class="stack-lg hidden">
+          <div class="admin-top">
+            <div>
+              <h1 class="page-title">Bayar Iuran</h1>
+              <p class="page-desc" style="margin-bottom: 0">Catat pembayaran tunai atau transfer.</p>
+            </div>
+          </div>
+
+          <div class="card stack">
+            <div class="field">
+              <label for="wali-bayar">Wali Murid</label>
+              <select id="wali-bayar" class="select">
+                <option>Pilih wali murid…</option>
+                <option>Ibu Ahmad Fauzi</option>
+                <option selected>Bapak Budi Santoso</option>
+                <option>Bapak Dimas Pratama</option>
+                <option>Ibu Gita Maharani</option>
+              </select>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label>Bulan tagihan</label>
+                <select class="select">
+                  <option selected>Juli 2026</option>
+                  <option>Agustus 2026</option>
+                  <option>September 2026</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Sisa tagihan</label>
+                <input class="input" value="Rp 10.000" readonly />
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label>Nominal bayar</label>
+                <input class="input" type="text" value="10000" />
+                <span class="hint">Default = sisa tagihan</span>
+              </div>
+              <div class="field">
+                <label>Tanggal bayar</label>
+                <input class="input" type="date" value="2026-07-20" />
+              </div>
+            </div>
+            <div class="field">
+              <label>Metode</label>
+              <div class="chips" id="metode-chips">
+                <button type="button" class="chip is-active">Tunai</button>
+                <button type="button" class="chip">Transfer</button>
+              </div>
+            </div>
+            <div class="field">
+              <label>Catatan</label>
+              <input class="input" placeholder="Opsional, mis. pelunasan sisa" />
+            </div>
+            <div class="field">
+              <label>Bukti transfer</label>
+              <input class="input" type="file" />
+              <span class="hint">Opsional · gambar/PDF</span>
+            </div>
+            <button class="btn btn--primary btn--block" type="button">Catat pembayaran</button>
+          </div>
+        </section>
+
+        <!-- PEMASUKAN LAIN -->
+        <section id="admin-pemasukan" class="stack-lg hidden">
+          <div class="admin-top">
+            <div>
+              <h1 class="page-title">Pemasukan Lain</h1>
+              <p class="page-desc" style="margin-bottom: 0">Sumbangan, sisa kegiatan, pengembalian, dll.</p>
+            </div>
+          </div>
+          <div class="card stack">
+            <div class="grid-2">
+              <div class="field">
+                <label>Tanggal</label>
+                <input class="input" type="date" value="2026-07-20" />
+              </div>
+              <div class="field">
+                <label>Nominal</label>
+                <input class="input" type="text" placeholder="100000" />
+              </div>
+            </div>
+            <div class="field">
+              <label>Keterangan</label>
+              <input class="input" placeholder="Mis. Sumbangan alumni" />
+            </div>
+            <div class="field">
+              <label>Metode (opsional)</label>
+              <select class="select">
+                <option>Transfer</option>
+                <option>Tunai</option>
+                <option>—</option>
+              </select>
+            </div>
+            <button class="btn btn--primary btn--block" type="button">Simpan pemasukan</button>
+          </div>
+        </section>
+
+        <!-- PENGELUARAN -->
+        <section id="admin-pengeluaran" class="stack-lg hidden">
+          <div class="admin-top">
+            <div>
+              <h1 class="page-title">Pengeluaran</h1>
+              <p class="page-desc" style="margin-bottom: 0">Catat belanja kas kelas beserta kategori.</p>
+            </div>
+          </div>
+          <div class="card stack">
+            <div class="grid-2">
+              <div class="field">
+                <label>Tanggal</label>
+                <input class="input" type="date" value="2026-07-20" />
+              </div>
+              <div class="field">
+                <label>Nominal</label>
+                <input class="input" type="text" placeholder="45000" />
+              </div>
+            </div>
+            <div class="field">
+              <label>Kategori</label>
+              <select class="select">
+                <option>Snack/Konsumsi</option>
+                <option>ATK</option>
+                <option>Dekorasi</option>
+                <option>Transport</option>
+                <option>Hadiah</option>
+                <option>Lain-lain</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Keterangan</label>
+              <input class="input" placeholder="Mis. Snack rapat wali Juli" />
+            </div>
+            <div class="field">
+              <label>Bukti (opsional)</label>
+              <input class="input" type="file" />
+            </div>
+            <button class="btn btn--primary btn--block" type="button">Simpan pengeluaran</button>
+          </div>
+        </section>
+
+        <!-- LAPORAN -->
+        <section id="admin-laporan" class="stack-lg hidden">
+          <div class="admin-top">
+            <div>
+              <h1 class="page-title">Laporan & Export</h1>
+              <p class="page-desc" style="margin-bottom: 0">Unduh rekap untuk rapat paguyuban.</p>
+            </div>
+          </div>
+
+          <div class="card stack">
+            <div class="field">
+              <label>Periode</label>
+              <select class="select">
+                <option>Juli 2026</option>
+                <option>Juni 2026</option>
+                <option>Tahun ajaran 2025/2026</option>
+              </select>
+            </div>
+            <div class="grid-2">
+              <button class="btn btn--primary" type="button">Export Excel</button>
+              <button class="btn btn--secondary" type="button">Export PDF</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <p class="card-label">Preview ringkas Juli 2026</p>
+            <div class="meta-line" style="margin-top: 12px">
+              <span class="in">Masuk Rp 320.000</span>
+              <span class="out">Keluar Rp 85.000</span>
+            </div>
+            <p style="margin: 12px 0 0; font-size: 18px; font-weight: 700">Saldo periode: Rp 235.000</p>
+            <hr class="divider" />
+            <p class="hint" style="margin: 0; font-size: 13px; color: var(--color-text-muted)">
+              Excel: rekap iuran per wali murid + daftar transaksi.<br />
+              PDF: laporan bulanan dengan kop kelas.
+            </p>
+          </div>
+        </section>
+
+        <!-- PENGATURAN -->
+        <section id="admin-pengaturan" class="stack-lg hidden">
+          <div class="admin-top">
+            <div>
+              <h1 class="page-title">Pengaturan</h1>
+              <p class="page-desc" style="margin-bottom: 0">Konfigurasi kelas, iuran, dan rekening.</p>
+            </div>
+          </div>
+
+          <div class="card stack">
+            <div class="field">
+              <label>Nama paguyuban / kelas</label>
+              <input class="input" value="SAID BIN HARITS — KBIT Mutiara Hati" />
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label>Tahun ajaran aktif</label>
+                <input class="input" value="2025/2026" />
+              </div>
+              <div class="field">
+                <label>Nominal iuran bulanan</label>
+                <input class="input" value="20000" />
+                <span class="hint">Berlaku untuk tagihan yang belum bertransaksi</span>
+              </div>
+            </div>
+            <div class="field">
+              <label>Info rekening (tampil di publik)</label>
+              <input class="input" value="BCA 1234567890 a.n. Bendahara Said Bin Harits" />
+            </div>
+            <div class="field">
+              <label>Kategori pengeluaran</label>
+              <input class="input" value="ATK, Snack/Konsumsi, Dekorasi, Transport, Hadiah, Lain-lain" />
+              <span class="hint">Mock: list sederhana dipisah koma</span>
+            </div>
+            <button class="btn btn--primary" type="button">Simpan pengaturan</button>
+          </div>
+
+          <div class="card stack">
+            <h2 style="margin: 0; font-size: 15px">Akun admin</h2>
+            <div class="list" style="box-shadow: none">
+              <div class="list-item" style="padding-left: 0; padding-right: 0">
+                <div class="list-item__main">
+                  <p class="list-item__title">ketua</p>
+                  <p class="list-item__sub">Role: Ketua</p>
+                </div>
+                <button class="btn btn--ghost btn--sm" type="button">Reset password</button>
+              </div>
+              <div class="list-item" style="padding-left: 0; padding-right: 0">
+                <div class="list-item__main">
+                  <p class="list-item__title">bendahara</p>
+                  <p class="list-item__sub">Role: Bendahara</p>
+                </div>
+                <button class="btn btn--ghost btn--sm" type="button">Reset password</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const sectionTitles = {
+          dashboard: "Dashboard",
+          wali: "Wali Murid",
+          bayar: "Bayar Iuran",
+          pemasukan: "Pemasukan Lain",
+          pengeluaran: "Pengeluaran",
+          laporan: "Laporan & Export",
+          pengaturan: "Pengaturan",
+        };
+
+        const sections = {
+          dashboard: document.getElementById("admin-dashboard"),
+          wali: document.getElementById("admin-wali"),
+          bayar: document.getElementById("admin-bayar"),
+          pemasukan: document.getElementById("admin-pemasukan"),
+          pengeluaran: document.getElementById("admin-pengeluaran"),
+          laporan: document.getElementById("admin-laporan"),
+          pengaturan: document.getElementById("admin-pengaturan"),
+        };
+
+        const links = document.querySelectorAll("[data-admin-nav]");
+        const mobileSection = document.getElementById("admin-mobile-section");
+        const drawer = document.getElementById("admin-drawer");
+        const overlay = document.getElementById("admin-drawer-overlay");
+        const openBtn = document.getElementById("admin-menu-open");
+        const closeBtn = document.getElementById("admin-menu-close");
+
+        function openDrawer() {
+          if (!drawer || !overlay) return;
+          drawer.hidden = false;
+          overlay.hidden = false;
+          // force reflow then animate
+          requestAnimationFrame(() => {
+            drawer.classList.add("is-open");
+            overlay.classList.add("is-open");
+          });
+          document.body.classList.add("admin-drawer-open");
+          if (openBtn) openBtn.setAttribute("aria-expanded", "true");
+        }
+
+        function closeDrawer() {
+          if (!drawer || !overlay) return;
+          drawer.classList.remove("is-open");
+          overlay.classList.remove("is-open");
+          document.body.classList.remove("admin-drawer-open");
+          if (openBtn) openBtn.setAttribute("aria-expanded", "false");
+          window.setTimeout(() => {
+            if (!drawer.classList.contains("is-open")) {
+              drawer.hidden = true;
+              overlay.hidden = true;
+            }
+          }, 220);
+        }
+
+        function show(name) {
+          Object.keys(sections).forEach((key) => {
+            if (sections[key]) {
+              sections[key].classList.toggle("hidden", key !== name);
+            }
+          });
+          links.forEach((a) => {
+            a.classList.toggle("is-active", a.getAttribute("data-admin-nav") === name);
+          });
+          if (mobileSection) {
+            mobileSection.textContent = sectionTitles[name] || name;
+          }
+          closeDrawer();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        links.forEach((a) => {
+          a.addEventListener("click", (e) => {
+            e.preventDefault();
+            show(a.getAttribute("data-admin-nav"));
+          });
+        });
+
+        document.querySelectorAll("[data-admin-go]").forEach((btn) => {
+          btn.addEventListener("click", () => show(btn.getAttribute("data-admin-go")));
+        });
+
+        if (openBtn) openBtn.addEventListener("click", openDrawer);
+        if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
+        if (overlay) overlay.addEventListener("click", closeDrawer);
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeDrawer();
+        });
+
+        document.querySelectorAll(".chips").forEach((group) => {
+          group.addEventListener("click", (e) => {
+            const chip = e.target.closest(".chip");
+            if (!chip) return;
+            group.querySelectorAll(".chip").forEach((c) => c.classList.remove("is-active"));
+            chip.classList.add("is-active");
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
